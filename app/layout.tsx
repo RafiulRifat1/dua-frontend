@@ -32,13 +32,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Sidebar />
-        <main className="min-h-screen  md:ml-[68px]">
+        <main className="min-h-screen md:mr-[349px] md:ml-[68px]">
           <Navbar />
           <div className="pt-16">
           {children}
           </div>
         </main>
-        {/* <RightSidebar /> md:mr-[349px] */}
+       <RightSidebar />
       </body>
     </html>
   );
