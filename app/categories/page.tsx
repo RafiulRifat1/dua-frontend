@@ -1,13 +1,21 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import LeftSidebar from '../component/LeftSidebar';
+import Duas from './slug/id/Duas';
 
 
 export default async function Home() {
 
-    const data = await fetch('http://localhost:4000/categories/subcategories/duas');
-    const posts = await data.json();
-    console.log(posts);
+    const [catRes, sunCatRes, duaRes] = await Promise.all([
+      await fetch("http://localhost:4000/categories"),
+      await fetch("http://localhost:4000/subcategories"),
+      await fetch("http://localhost:4000/categories/subcategories/duas"),]
+    );
+    const [categories, subcategories, duas] = [
+      await catRes.json(),
+      await sunCatRes.json(),
+      await duaRes.json(),
+    ];
 
 
   return (
@@ -32,10 +40,10 @@ export default async function Home() {
     <div className="flex px-2 sm:px-3 lg:px-6 min-h-[108px] items-center justify-between font-medium flex-row gap-4 text-xs py-3.5 bg-[#EEF6EB] text-black font-sans">
       <div className="">
         <p><span className="font-semibold text-base text-[#417360] pr-2.5">Section :</span>
-        <span className="text-base font-normal">{posts[1].title}</span></p>
+        <span className="text-base font-normal">{duas[1].title}</span></p>
       </div>
-
   </div>
+    <Duas />
   </div>
   );
 }
