@@ -27,6 +27,7 @@ interface Dua {
   reference: string;
   transliteration:string;
   translation:string;
+  slug: string;
 }
 
 interface Props {
@@ -67,7 +68,7 @@ export default function CategoryList({ categories, subcategories, duas }: Props)
             {/* Category Header */}
             <div
               onClick={() => toggleCategory(cat.id)}
-              className={`cursor-pointer rounded-xl p-4 pt-0 flex items-center justify-between transition-all duration-300 ${
+              className={`cursor-pointer rounded-xl p-4 flex items-center justify-between transition-all duration-300 ${
                 isActive ? "bg-white" : "bg-white hover:bg-[#E8F0F5]"
               }`}
             >

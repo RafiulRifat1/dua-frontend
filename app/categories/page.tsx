@@ -4,6 +4,31 @@ import LeftSidebar from '../component/LeftSidebar';
 import Duas from './slug/id/Duas';
 
 
+interface Category {
+  id: number;
+  name: string;
+  slug: string;
+}
+
+interface Subcategory {
+  id: number;
+  category_id: number;
+  name: string;
+  slug: string;
+}
+
+interface Dua {
+  id: number;
+  category_id: number;
+  subcategory_id: number;
+  title: string;
+  arabic: string;
+  Reference: string;
+  transliteration: string;
+  translation: string;
+  slug: string;
+  }
+
 export default async function Home() {
 
     const [catRes, sunCatRes, duaRes] = await Promise.all([
@@ -12,9 +37,9 @@ export default async function Home() {
       await fetch("http://localhost:4000/categories/subcategories/duas"),]
     );
     const [categories, subcategories, duas] = [
-      await catRes.json(),
-      await sunCatRes.json(),
-      await duaRes.json(),
+    (await catRes.json()) as Category[],
+    (await sunCatRes.json()) as Subcategory[],
+    (await duaRes.json()) as Dua[],
     ];
 
 
@@ -43,7 +68,7 @@ export default async function Home() {
         <span className="text-base font-normal">{duas[1].title}</span></p>
       </div>
   </div>
-    <Duas />
+    <Duas duas={duas}/>
   </div>
   );
 }

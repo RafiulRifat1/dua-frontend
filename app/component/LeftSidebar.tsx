@@ -23,6 +23,7 @@ interface Dua {
   reference: string;
   transliteration:string;
   translation:string;
+  slug: string;
 }
 
 
@@ -39,7 +40,7 @@ export default async function LeftSidebar() {
 
   
   return (
-    <div className="fixed left-17 top-16 w-[350px] h-full bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-lg z-10 hidden md:block">
+    <div className="fixed left-17 top-16 w-[350px] h-full overflow-hidden border border-gray-100 shadow-lg z-10 hidden md:block">
       
       
       <div className=" p-4 rounded-t-3xl text-center">
@@ -71,7 +72,7 @@ export default async function LeftSidebar() {
         </div>
       </div>
 
-     <div className="h-[calc(100%-110px)] overflow-y-auto p-4">
+     <div className="h-[calc(100%-10px)] overflow-y-auto p-4">
         <CategoryList categories={categories} subcategories={subcategories} duas={duas} />
       </div>
     </div>

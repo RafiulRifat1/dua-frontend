@@ -26,3 +26,27 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+body::-webkit-scrollbar {
+  width: 6px;
+  background: black;
+  color: #417360;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px; 
+  height: 6px; 
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #929292; 
+  border-radius: 10px; 
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #417360; 
+}
