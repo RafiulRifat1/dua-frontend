@@ -1,0 +1,190 @@
+'use client';
+import PlayButton from './PlayButton';
+
+interface Dua {
+  id: number;
+  category_id: number;
+  subcategory_id: number;
+  title: string;
+  arabic: string;
+  reference: string;
+  transliteration:string;
+  translation:string;
+}
+
+interface Props {
+    duas : Dua[];
+    slug: string;
+}
+  const handleCopy = async (textToCopy: string) => {
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      alert('Dua copied to clipboard!');
+    } catch (err) {
+      alert('Failed to copy dua!');
+      console.error('Error copying text: ', err);
+    }
+  };
+
+export default function Duas({ duas , slug} : Props) {
+  
+  return (
+    <div className="">
+
+      <div className="flex min-h-[108px] items-center  px-2 sm:px-3 lg:px-6 justify-between font-medium flex-row gap-4 text-xs py-3.5 bg-[#EEF6EB] text-black font-sans">
+          <div className="min-w-dvh mx-auto">
+            <p><span className="font-semibold text-base text-[#417360] pr-2.5">Section :</span>
+            <span className="text-base font-normal">{slug.replace(/-/g, ' ').charAt(0).toUpperCase() + slug.replace(/-/g, ' ').slice(1).replace(/%26/g, '&' )}</span></p>
+          </div>
+      </div>
+
+      {duas.map((d) => (
+        <div key={d.id} id={`dua-${d.id}`} className="border-b scroll-mt-[100px] border-[#E1EBE1] px-2 sm:px-3 lg:px-6">
+        <div className="max-w-dvh mx-auto font-semibold text-[16px]/5 text-[#282E29]">
+          <div className="flex items-center gap-2 text-lg my-12 text-[#417360]">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.6">
+            <path d="M12.6975 1.45775C13.3931 0.680747 14.6096 0.680746 15.3052 1.45775L17.4051 3.8034C17.7596 4.1994 18.2748 4.41283 18.8055 4.38349L21.949 4.20971C22.9903 4.15214 23.8505 5.01235 23.7929 6.05364L23.6191 9.1971C23.5898 9.72779 23.8032 10.2431 24.1992 10.5976L26.5449 12.6974C27.3219 13.393 27.3219 14.6096 26.5449 15.3052L24.1992 17.405C23.8032 17.7595 23.5898 18.2748 23.6191 18.8055L23.7929 21.949C23.8505 22.9902 22.9903 23.8505 21.949 23.7929L18.8055 23.6191C18.2748 23.5898 17.7596 23.8032 17.4051 24.1992L15.3052 26.5448C14.6096 27.3218 13.3931 27.3218 12.6975 26.5448L10.5976 24.1992C10.2431 23.8032 9.72781 23.5898 9.19712 23.6191L6.05365 23.7929C5.01237 23.8505 4.15216 22.9902 4.20972 21.949L4.3835 18.8055C4.41284 18.2748 4.19941 17.7595 3.80342 17.405L1.45777 15.3052C0.680762 14.6096 0.680761 13.393 1.45777 12.6974L3.80342 10.5976C4.19941 10.2431 4.41284 9.72779 4.3835 9.1971L4.20972 6.05364C4.15216 5.01235 5.01236 4.15214 6.05365 4.20971L9.19712 4.38349C9.7278 4.41283 10.2431 4.1994 10.5976 3.8034L12.6975 1.45775Z" stroke="#417360" stroke-width="1.75"/>
+            <path d="M13.3489 6.94632C13.6967 6.55782 14.305 6.55782 14.6528 6.94632L15.9243 8.36674C16.1016 8.56474 16.3592 8.67145 16.6246 8.65679L18.5281 8.55155C19.0488 8.52277 19.4789 8.95287 19.4501 9.47352L19.3448 11.3771C19.3302 11.6424 19.4369 11.9 19.6349 12.0773L21.0553 13.3489C21.4438 13.6967 21.4438 14.3049 21.0553 14.6527L19.6349 15.9243C19.4369 16.1016 19.3302 16.3592 19.3448 16.6246L19.4501 18.5281C19.4789 19.0487 19.0488 19.4788 18.5281 19.4501L16.6246 19.3448C16.3592 19.3302 16.1016 19.4369 15.9243 19.6349L14.6528 21.0553C14.305 21.4438 13.6967 21.4438 13.3489 21.0553L12.0773 19.6349C11.9 19.4369 11.6424 19.3302 11.3771 19.3448L9.47353 19.4501C8.95289 19.4788 8.52278 19.0487 8.55157 18.5281L8.6568 16.6246C8.67147 16.3592 8.56476 16.1016 8.36676 15.9243L6.94634 14.6527C6.55783 14.3049 6.55783 13.6967 6.94634 13.3489L8.36676 12.0773C8.56476 11.9 8.67147 11.6424 8.6568 11.3771L8.55157 9.47351C8.52278 8.95287 8.95289 8.52277 9.47353 8.55155L11.3771 8.65679C11.6424 8.67145 11.9 8.56474 12.0773 8.36674L13.3489 6.94632Z" stroke="#417360" stroke-width="1.45833"/>
+            <path d="M13.7443 12.0824C13.863 11.8937 14.138 11.8937 14.2567 12.0824C14.3435 12.2204 14.524 12.2649 14.665 12.1831C14.8578 12.0711 15.1013 12.199 15.1187 12.4212C15.1315 12.5837 15.2706 12.707 15.4335 12.7C15.6562 12.6905 15.8124 12.9169 15.7246 13.1218C15.6603 13.2716 15.7262 13.4454 15.8737 13.5149C16.0753 13.61 16.1085 13.8831 15.9354 14.0237C15.8089 14.1265 15.7865 14.311 15.8848 14.441C16.0191 14.619 15.9216 14.8761 15.703 14.9202C15.5433 14.9525 15.4377 15.1054 15.4642 15.2662C15.5005 15.4862 15.2946 15.6686 15.0806 15.6061C14.9241 15.5604 14.7596 15.6467 14.7083 15.8015C14.6382 16.0131 14.3711 16.0789 14.2107 15.9241C14.0934 15.8109 13.9076 15.8109 13.7903 15.9241C13.6299 16.0789 13.3628 16.0131 13.2927 15.8015C13.2414 15.6467 13.0769 15.5604 12.9204 15.6061C12.7064 15.6686 12.5005 15.4862 12.5368 15.2662C12.5633 15.1054 12.4577 14.9525 12.298 14.9202C12.0794 14.8761 11.9819 14.619 12.1162 14.441C12.2145 14.311 12.1921 14.1265 12.0656 14.0237C11.8925 13.8831 11.9257 13.61 12.1273 13.5149C12.2748 13.4454 12.3407 13.2716 12.2764 13.1218C12.1886 12.9169 12.3448 12.6905 12.5675 12.7C12.7304 12.707 12.8695 12.5837 12.8822 12.4212C12.8997 12.199 13.1432 12.0711 13.336 12.1831C13.477 12.2649 13.6575 12.2204 13.7443 12.0824Z" fill="#417360"/>
+            </g>
+            </svg>
+          {d.id.toString().padStart(2, '0')}. {d.title}
+          </div>
+          <div className="font-uthma-custom my-12 font-normal text-[28px] leading-none tracking-normal text-right">{d.arabic}</div>
+          {d.transliteration &&(<div className="italic my-12 font-normal">{d.transliteration}</div>)}
+          <div className="my-12 text-[18px]/8 font-normal"><div className="text-[#417360] font-semibold mb-2">Translation</div>
+          {d.translation}
+          </div>
+          <div className="flex justify-between items-center">
+          <div className="my-7.5 text-sm font-normal text-gray-600">
+            <div className="text-[#7C827D]">Reference</div>
+            {d.reference}
+          </div> 
+
+          <div
+          className="flex gap- justify-evenly">
+
+            <div className="relative group cursor-pointer">
+              <button className="ml-6 mt-6 text-white text-sm font-medium rounded-full hover:bg-[#8297912f] transition-colors">
+                              <PlayButton text={d.arabic}/>
+              {/* <svg className="group-hover:hidden" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.33337 9.99995V7.03329C3.33337 3.34995 5.94171 1.84162 9.13337 3.68329L11.7084 5.16662L14.2834 6.64995C17.475 8.49162 17.475 11.5083 14.2834 13.35L11.7084 14.8333L9.13337 16.3166C5.94171 18.1583 3.33337 16.65 3.33337 12.9666V9.99995Z" stroke="#709484" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <svg  className="hidden group-hover:block"
+                width="20" 
+                height="20" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect x="6" y="5" width="4" height="14" rx="0.5" fill="#709484"/>
+                <rect x="14" y="5" width="4" height="14" rx="0.5" fill="#709484"/>
+              </svg> 
+                  <div onClick={() => { const utterance = new SpeechSynthesisUtterance(d.arabic); utterance.lang = 'ar-SA'; window.speechSynthesis.speak(utterance); utterance.rate = 0.8; }}  className=' hidden group-hover:block absolute top-6 right-px' style={{ width: 35, height: 35 }}>
+                    <CircularProgressbar value={96} />
+                  </div>*/}               
+
+            </button>
+          </div>
+
+
+
+          <div className="relative group cursor-pointer">
+            <button className="ml-6 mt-6 px-2 py-2 text-white text-sm font-medium rounded-full hover:bg-[#8297912f] transition-colors">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.0833 8.875H7.91663" stroke="#709484" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14.0167 1.66663H5.98339C4.20839 1.66663 2.76672 3.11663 2.76672 4.88329V16.625C2.76672 18.125 3.84172 18.7583 5.15839 18.0333L9.22506 15.775C9.65839 15.5333 10.3584 15.5333 10.7834 15.775L14.8501 18.0333C16.1667 18.7666 17.2417 18.1333 17.2417 16.625V4.88329C17.2334 3.11663 15.7917 1.66663 14.0167 1.66663Z" stroke="#709484" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+
+            </button>                      
+            <div className="
+                        absolute bottom-11 right-[-27px]
+                        py-2 px-3 text-[14px] bg-black text-white rounded-lg 
+                        opacity-0 invisible translate-y-2
+                        group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 duration-200">
+                          Bookmark
+                    </div>
+          </div>   
+
+          <div className="relative group cursor-pointer">
+            <button onClick={() => handleCopy(d.arabic)} className="ml-6 mt-6 px-2 py-2 text-white text-sm font-medium rounded-full hover:bg-[#8297912f] transition-colors">
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        width="20" 
+                        height="20" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="#709484" 
+                        strokeWidth="1.9" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                      >
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                      </svg>                      <div className="
+                        absolute bottom-11 left-[15px]
+                        py-2 px-3 text-[14px] bg-black text-white rounded-lg 
+                        opacity-0 invisible translate-y-2
+                        group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 duration-200">
+                          Copy
+                    </div>
+            </button>
+          </div>
+          
+          <div className="relative group cursor-pointer">
+            <button className="ml-6 mt-6 px-2 py-2 text-white text-sm font-medium rounded-full hover:bg-[#8297912f] transition-colors">
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        width="20" 
+                        height="20" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="#709484" 
+                        strokeWidth="1.9" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                      >
+                        <circle cx="18" cy="5" r="3"></circle>
+                        <circle cx="6" cy="12" r="3"></circle>
+                        <circle cx="18" cy="19" r="3"></circle>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                        <line x1="8.59" y1="10.49" x2="15.42" y2="6.51"></line>
+                      </svg>            <div className="
+                        absolute bottom-11 left-[15px]
+                        py-2 px-3 text-[14px] bg-black text-white rounded-lg 
+                        opacity-0 invisible translate-y-2
+                        group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 duration-200">
+                          Share
+                    </div>
+            </button>
+          </div>
+
+          <div className="relative group cursor-pointer">
+            <button className="ml-6 mt-6 px-2 py-2 text-white text-sm font-medium rounded-full hover:bg-[#8297912f] transition-colors">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.99996 10.8333C10.4602 10.8333 10.8333 10.4602 10.8333 9.99998C10.8333 9.53974 10.4602 9.16665 9.99996 9.16665C9.53972 9.16665 9.16663 9.53974 9.16663 9.99998C9.16663 10.4602 9.53972 10.8333 9.99996 10.8333Z" stroke="#709484" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9.99996 4.99998C10.4602 4.99998 10.8333 4.62688 10.8333 4.16665C10.8333 3.70641 10.4602 3.33331 9.99996 3.33331C9.53972 3.33331 9.16663 3.70641 9.16663 4.16665C9.16663 4.62688 9.53972 4.99998 9.99996 4.99998Z" stroke="#709484" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9.99996 16.6666C10.4602 16.6666 10.8333 16.2935 10.8333 15.8333C10.8333 15.3731 10.4602 15 9.99996 15C9.53972 15 9.16663 15.3731 9.16663 15.8333C9.16663 16.2935 9.53972 16.6666 9.99996 16.6666Z" stroke="#709484" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div className="
+                        absolute bottom-11 left-[15px]
+                        py-2 px-3 text-[14px] bg-black text-white rounded-lg 
+                        opacity-0 invisible translate-y-2
+                        group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 duration-200">
+                          More
+                    </div>
+            </button>
+          </div>
+
+          
+          </div>
+
+
+          </div>
+        </div>         
+        </div>
+      ))}
+    </div>
+  )
+}

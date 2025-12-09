@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function RightSidebar() {
   return (
-    <div className="hidden md:w-[349px] h-screen fixed border-l-[#EEF6EB] border md:flex flex-col right-0 top-16 items-center overflow-auto">
+    <div className="hidden md:w-[349px] h-screen fixed border-l-[#E1EBE1] border-[#E1EBE1] border md:flex flex-col right-0 top-16 items-center overflow-auto">
         {/* hidden md:flex fixed right-0 top-0 h-screen w-[320px] bg-white z-20 border-l flex-col overflow-auto */}
         <div className="w-full flex pt-4 px-8">
             <svg width="280" height="446" viewBox="0 0 280 446" fill="none" xmlns="http://www.w3.org/2000/svg">

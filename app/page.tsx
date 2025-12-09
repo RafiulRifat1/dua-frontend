@@ -7,7 +7,6 @@ export default async function Home() {
 
     const data = await fetch('http://localhost:4000/categories');
     const posts = await data.json();
-    console.log(posts);
 
 
   return (

@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Sidebar() {
   return (
-    <div className="h-screen hidden bg-[#EEF6EB] border-r-[#EEF6EB] border fixed md:w-[68px] md:flex flex-col overflow-auto">
+    <div className="h-screen hidden bg-[#EEF6EB] border-r-[#EEF6EB] border fixed md:w-[68px] md:flex flex-col overflow-hidden">
       <div className="w-full p-3">
         <svg width="45" height="44" viewBox="0 0 45 44" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="44.1149" height="44" rx="11.7857" fill="#417360"/>

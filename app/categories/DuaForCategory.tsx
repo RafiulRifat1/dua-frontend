@@ -10,11 +10,25 @@ interface Dua {
   translation:string;
 }
 
-export default function Duas({ duas }: { duas: Dua[] }) {
+interface Props {
+    duas : Dua[];
+    slug: string;
+}
+
+export default function Duas({ duas , slug} : Props) {
+  console.log(slug);
   return (
     <div className="">
+
+      <div className="flex min-h-[108px] items-center  px-2 sm:px-3 lg:px-6 justify-between font-medium flex-row gap-4 text-xs py-3.5 bg-[#EEF6EB] text-black font-sans">
+          <div className="min-w-dvh mx-auto">
+            <p><span className="font-semibold text-base text-[#417360] pr-2.5">Section : {slug.replace(/-/g, ' ').charAt(0).toUpperCase() + slug.replace(/-/g, ' ').slice(1)}</span>
+            <span className="text-base font-normal">{}</span></p>
+          </div>
+      </div>
+
       {duas.map((d) => (
-        <div key={d.id} className="border-b border-[#E1EBE1]">
+        <div key={d.id} id={`dua-${d.id}`} className="border-b scroll-mt-[100px] border-[#E1EBE1] px-2 sm:px-3 lg:px-6">
         <div className="max-w-dvh mx-auto font-semibold text-[16px]/5 text-[#282E29]">
           <div className="flex items-center gap-2 text-lg my-12 text-[#417360]">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
