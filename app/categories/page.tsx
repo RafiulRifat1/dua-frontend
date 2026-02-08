@@ -65,7 +65,7 @@ export default async function Home() {
          </div>
 
     </div>
-    <DuasForCategory duas ={duas as Dua[]} slug=""/>
+    <DuasForCategory duas ={duas as any} slug=""/>
   </div>
   );
 }
