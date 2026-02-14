@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import Image from 'next/image';
 import Link from 'next/link';
 import LeftSidebar from '../component/LeftSidebar';
@@ -31,16 +32,15 @@ interface Dua {
 
 export default async function Home() {
 
-    const [catRes, sunCatRes, duaRes] = await Promise.all([
-      await fetch("http://localhost:4000/categories"),
-      await fetch("http://localhost:4000/subcategories"),
-      await fetch("http://localhost:4000/categories/subcategories/duas"),]
-    );
-    const [categories, subcategories, duas] = [
-    (await catRes.json()) as Category[],
-    (await sunCatRes.json()) as Subcategory[],
-    (await duaRes.json()) as Dua[],
-    ];
+  const [catRes, subCatRes, duaRes] = await Promise.all([
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`, { cache: "no-store" }),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/subcategories`, { cache: "no-store" }),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories/subcategories/duas`, { cache: "no-store" }),
+  ]);
+
+  const categories = (await catRes.json()) as Category[];
+  const subcategories = (await subCatRes.json()) as Subcategory[];
+  const duas = (await duaRes.json()) as Dua[];
 
 
   return (

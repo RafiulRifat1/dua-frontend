@@ -5,7 +5,7 @@ import "./globals.css"
 
 export default async function Home() {
 
-    const data = await fetch('http://localhost:4000/categories');
+    const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`, { cache: "no-store" });
     const posts = await data.json();
 
 
