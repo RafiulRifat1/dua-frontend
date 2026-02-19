@@ -21,7 +21,9 @@ export default  async function Page({ params }: { params: { slug: string; id: st
 
 
     const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/duas/${id}`);
+    `${process.env.NEXT_PUBLIC_API_URL}/duas/${id}`, {
+  cache: "no-store"
+});
   const duas = await res.json();
 
 
