@@ -33,7 +33,7 @@ interface Dua {
 async function fetchAllData() {
     const [catRes, subcatRes, duaRes] = await Promise.all([
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`, { cache: "no-store" }),
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories/subcategories`, { cache: "no-store" }),
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/subcategories`, { cache: "no-store" }),
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories/subcategories/duas`, { cache: "no-store" }),
     ]);
 
